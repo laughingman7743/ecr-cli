@@ -36,11 +36,11 @@ class EcrAction(object):
     def login(self, reauth=True):
         username, password, registry = self._ecr_client.get_authorization_token(
             self._registry_id)
-        self._docker_client.login(username=username, password=password,
-                                  registry=registry, reauth=reauth)
-        _logger.debug(registry)
         self._registry = registry.replace('https://', '')
-        return registry
+        self._docker_client.login(username=username, password=password,
+                                  registry=self._registry, reauth=reauth)
+        _logger.debug(self._registry)
+        return self._registry
 
     def _process_stream(self, stream):
         result_stream, internal_stream = itertools.tee(json_stream(stream))
