@@ -111,7 +111,11 @@ class EcrAction(object):
         if isinstance(resp, string_types):
             image_id = resp
         else:
-            image_id = self._process_stream(resp)[0]
+            image_ids = self._process_stream(resp)
+            if not image_ids:
+                image_id = tag
+            else:
+                image_id = image_ids[0]
         image = self._docker_client.images.get(image_id)
         if tags and len(tags) > 1:
             for t in tags[1:]:
