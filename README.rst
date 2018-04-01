@@ -36,8 +36,8 @@ Installation
 
     $ pip install ecr-cli
 
-Configuration file
-------------------
+ECR Configuration file
+----------------------
 
 If you place a file in `YAML format`_ with the filename ``.ecr.yml`` in the same directory as ``Dockerfile``,
 profile name, region name, registry ID and tag can be set.
@@ -98,8 +98,9 @@ Build
       Build an image from a Dockerfile.
 
     Options:
-      -t, --tag TEXT
-      --dockerfile PATH           Name of the Dockerfile (Default is ‘PATH/Dockerfile’).
+      -t, --tag TEXT              Name and optionally a tag in the `name:tag` format.
+      --dockerfile PATH           Name of the Dockerfile (Default is `PATH/Dockerfile`).
+      --configfile PATH           Name of the ECR configuration file (Default is `PATH/.ecr.yml`).
       --cache / --no-cache        Use cache when building the image.
       --rm / --no-rm              Remove intermediate containers after a successful build.
       --force-rm / --no-force-rm  Always remove intermediate containers.
