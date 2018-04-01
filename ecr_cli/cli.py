@@ -8,7 +8,7 @@ import click
 import ecr_cli.message as msg
 from ecr_cli import CONTEXT_SETTINGS
 from ecr_cli.action import EcrAction
-from ecr_cli.util import load_config
+from ecr_cli.util import load_ecr_config
 
 
 @click.group(context_settings=CONTEXT_SETTINGS)
@@ -31,9 +31,12 @@ def cli(ctx, profile, region, registry_id, debug):
 
 @cli.command(help=msg.HELP_COMMAND_BUILD)
 @click.argument('path', type=click.Path(exists=True, dir_okay=True), nargs=1, required=True)
-@click.option('--tag', '-t', type=str, multiple=True, required=False)
+@click.option('--tag', '-t', type=str, multiple=True, required=False,
+              help=msg.HELP_OPTION_TAG)
 @click.option('--dockerfile', type=click.Path(exists=True, file_okay=True), required=False,
               help=msg.HELP_OPTION_DOCKERFILE)
+@click.option('--configfile', type=click.Path(exists=True, file_okay=True), required=False,
+              help=msg.HELP_OPTION_CONFIGFILE)
 @click.option('--cache/--no-cache', default=True, required=False,
               help=msg.HELP_OPTION_CACHE)
 @click.option('--rm/--no-rm', default=False, required=False,
@@ -49,8 +52,12 @@ def cli(ctx, profile, region, registry_id, debug):
 @click.option('--quiet/--no-quiet', default=False, required=False,
               help=msg.HELP_OPTION_QUIET)
 @click.pass_context
-def build(ctx, path, tag, dockerfile, cache, rm, force_rm, pull, squash, push, quiet):
-    config = load_config(os.path.dirname(dockerfile) if dockerfile else path)
+def build(ctx, path, tag, dockerfile, configfile, cache, rm, force_rm,
+          pull, squash, push, quiet):
+    if not configfile:
+        configfile = os.path.join(os.path.dirname(dockerfile) if dockerfile else path,
+                                  '.ecr.yml')
+    config = load_ecr_config(configfile)
     if not config and not tag:
         raise RuntimeError('Missing argument `tag`.')
 
