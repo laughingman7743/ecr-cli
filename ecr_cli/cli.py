@@ -51,9 +51,11 @@ def cli(ctx, profile, region, registry_id, debug):
               help=msg.HELP_OPTION_PUSH)
 @click.option('--quiet/--no-quiet', default=False, required=False,
               help=msg.HELP_OPTION_QUIET)
+@click.option('--no-profile', type=bool, default=False, required=False,
+              help=msg.HELP_OPTION_NO_PROFILE)
 @click.pass_context
 def build(ctx, path, tag, dockerfile, configfile, cache, rm, force_rm,
-          pull, squash, push, quiet):
+          pull, squash, push, quiet, no_profile):
     if not configfile:
         configfile = os.path.join(os.path.dirname(dockerfile) if dockerfile else path,
                                   '.ecr.yml')
@@ -62,7 +64,8 @@ def build(ctx, path, tag, dockerfile, configfile, cache, rm, force_rm,
         raise RuntimeError('Missing argument `tag`.')
 
     action = EcrAction(
-        profile_name=ctx.obj['profile'] if ctx.obj['profile'] else config.profile_name,
+        profile_name=None if no_profile else
+        ctx.obj['profile'] if ctx.obj['profile'] else config.profile_name,
         region_name=ctx.obj['region'] if ctx.obj['region'] else config.region_name,
         registry_id=ctx.obj['registry_id'] if ctx.obj['registry_id'] else config.registry_id,
         debug=ctx.obj['debug'])
