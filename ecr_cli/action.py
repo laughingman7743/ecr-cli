@@ -1,19 +1,18 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+
+import itertools
 import logging
 import sys
 
 import click
 import docker
-import itertools
-
 from docker.errors import DockerException
 from docker.utils.json_stream import json_stream
 from future.utils import string_types
 from tqdm import tqdm
 
 from ecr_cli.client import EcrClient
-
 
 _logger = logging.getLogger(__name__)
 _logger.addHandler(logging.StreamHandler(sys.stdout))

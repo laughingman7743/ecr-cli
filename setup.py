@@ -34,7 +34,7 @@ setup(
         'tqdm>=4.19.0'
     ],
     tests_require=[
-        'pytest',
+        'pytest>=3.5',
         'pytest-cov',
         'pytest-flake8',
     ],

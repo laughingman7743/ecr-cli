@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-
 HELP_COMMAND_BUILD = 'Build an image from a Dockerfile.'
 HELP_COMMAND_PUSH = 'Push an image or a repository to a Amazon ECR registry.'
 HELP_COMMAND_PULL = 'Pull an image or a repository from a Amazon ECR registry'
