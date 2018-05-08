@@ -52,7 +52,7 @@ def cli(ctx, profile, region, registry_id, debug):
               help=msg.HELP_OPTION_PUSH)
 @click.option('--quiet/--no-quiet', default=False, required=False,
               help=msg.HELP_OPTION_QUIET)
-@click.option('--no-profile', type=bool, default=False, required=False,
+@click.option('--no-profile', is_flag=True, default=False, required=False,
               help=msg.HELP_OPTION_NO_PROFILE)
 @click.pass_context
 def build(ctx, path, tag, dockerfile, configfile, cache, rm, force_rm,
