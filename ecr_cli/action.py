@@ -122,13 +122,14 @@ class EcrAction(object):
                 image.tag('{0}/{1}'.format(self._registry, name), tag, force=True)
         return image
 
-    def push(self, name, tag=None):
+    def push(self, name, tag=None, quiet=False):
         resp = self._docker_client.images.push(
-            '{0}/{1}'.format(self._registry, name), tag, stream=True)
-        image_ids = self._process_stream(resp)
-        return tuple(image_ids)
+            '{0}/{1}'.format(self._registry, name), tag, stream=not quiet)
+        if not quiet:
+            self._process_stream(resp)
 
-    def pull(self, name, tag=None):
+    def pull(self, name, tag=None, quiet=False):
         resp = self._docker_client.images.client.api.pull(
-            '{0}/{1}'.format(self._registry, name), tag, stream=True)
-        self._process_stream(resp)
+            '{0}/{1}'.format(self._registry, name), tag, stream=not quiet)
+        if not quiet:
+            self._process_stream(resp)

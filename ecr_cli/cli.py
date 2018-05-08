@@ -75,31 +75,35 @@ def build(ctx, path, tag, dockerfile, configfile, cache, rm, force_rm,
                  pull=pull, squash=squash, quiet=quiet)
     if push:
         for t in config.tags:
-            action.push(t)
+            action.push(t, quiet=quiet)
 
 
 @cli.command(help=msg.HELP_COMMAND_PUSH)
 @click.argument('name', type=str, nargs=-1, required=True)
+@click.option('--quiet/--no-quiet', default=False, required=False,
+              help=msg.HELP_OPTION_QUIET)
 @click.pass_context
-def push(ctx, name):
+def push(ctx, name, quiet):
     action = EcrAction(profile_name=ctx.obj['profile'],
                        region_name=ctx.obj['region'],
                        registry_id=ctx.obj['registry_id'],
                        debug=ctx.obj['debug'])
     for n in name:
-        action.push(n)
+        action.push(n, quiet=quiet)
 
 
 @cli.command(help=msg.HELP_COMMAND_PULL)
 @click.argument('name', type=str, nargs=-1, required=True)
+@click.option('--quiet/--no-quiet', default=False, required=False,
+              help=msg.HELP_OPTION_QUIET)
 @click.pass_context
-def pull(ctx, name):
+def pull(ctx, name, quiet):
     action = EcrAction(profile_name=ctx.obj['profile'],
                        region_name=ctx.obj['region'],
                        registry_id=ctx.obj['registry_id'],
                        debug=ctx.obj['debug'])
     for n in name:
-        action.pull(n)
+        action.pull(n, quiet=quiet)
 
 
 if __name__ == '__main__':

@@ -20,5 +20,5 @@ HELP_OPTION_PULL = 'Always attempt to pull a newer version of the image.'
 HELP_OPTION_SQUASH = 'Squash newly built layers into a single new layer.'
 HELP_OPTION_PUSH = 'Push an image or a repository to a Amazon ECR registry ' \
                    'after a successful build.'
-HELP_OPTION_QUIET = 'Suppress the build output and print image ID on success.'
+HELP_OPTION_QUIET = 'Suppress the standard output.'
 HELP_OPTION_NO_PROFILE = 'Forcibly disable the ECR configuration file profile.'
