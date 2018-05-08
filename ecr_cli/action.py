@@ -42,6 +42,7 @@ class EcrAction(object):
         return self._registry
 
     def _process_stream(self, stream):
+        # TODO Safe dictionary key access
         result_stream, internal_stream = itertools.tee(json_stream(stream))
         image_ids = set()
         progress_bars = {}
