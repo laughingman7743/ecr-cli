@@ -107,7 +107,7 @@ Build
       --pull / --no-pull          Always attempt to pull a newer version of the image.
       --squash / --no-squash      Squash newly built layers into a single new layer.
       --push / --no-push          Push an image or a repository to a Amazon ECR registry after a successful build.
-      --quiet / --no-quiet        Suppress the build output and print image ID on success.
+      --quiet / --no-quiet        Suppress the standard output.
       --no-profile                Forcibly disable the ECR configuration file profile.
       -h, --help                  Show this message and exit.
 
@@ -121,6 +121,7 @@ Push
       Push an image or a repository to a Amazon ECR registry.
 
     Options:
+      --quiet / --no-quiet        Suppress the standard output.
       -h, --help  Show this message and exit.
 
 Pull
@@ -133,6 +134,7 @@ Pull
       Pull an image or a repository from a Amazon ECR registry
 
     Options:
+      --quiet / --no-quiet        Suppress the standard output.
       -h, --help  Show this message and exit.
 
 Authentication
