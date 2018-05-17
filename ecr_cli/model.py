@@ -14,11 +14,12 @@ class EcrConfig(object):
     def from_dict(value):
         tags = value.get('tags', None)
         assert tags, 'Missing sequence `tags`.'
+        registry_id = value.get('registry_id', None)
         return EcrConfig(
             tags,
             value.get('profile_name', None),
             value.get('region_name', None),
-            int(value.get('registry_id', None)),)
+            str(registry_id) if registry_id else registry_id,)
 
     def _key(self):
         return (self.tags,
