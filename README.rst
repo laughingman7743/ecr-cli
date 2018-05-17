@@ -51,7 +51,7 @@ profile name, region name, registry ID and tag can be set.
 +--------------+------------+-------------------------------------------------------------------------------------+
 | region_name  | str        | The region to use. Overrides config/env settings.                                   |
 +--------------+------------+-------------------------------------------------------------------------------------+
-| registry_id  | int        | AWS account ID that correspond to a Amazon ECR registry that you want to log in to. |
+| registry_id  | str        | AWS account ID that correspond to a Amazon ECR registry that you want to log in to. |
 +--------------+------------+-------------------------------------------------------------------------------------+
 | tags         | seq of str | Name and optionally a tag in the ‘name:tag’ format.                                 |
 +--------------+------------+-------------------------------------------------------------------------------------+
@@ -77,11 +77,11 @@ Usage
     Usage: ecr [OPTIONS] COMMAND [ARGS]...
 
     Options:
-      --profile TEXT         Use a specific profile from your credential file.
-      --region TEXT          The region to use. Overrides config/env settings.
-      --registry-id INTEGER  AWS account ID that correspond to a Amazon ECR registry that you want to log in to.
-      --debug / --no-debug   Turn on debug logging.
-      -h, --help             Show this message and exit.
+      --profile TEXT        Use a specific profile from your credential file.
+      --region TEXT         The region to use. Overrides config/env settings.
+      --registry-id TEXT    AWS account ID that correspond to a Amazon ECR registry that you want to log in to.
+      --debug / --no-debug  Turn on debug logging.
+      -h, --help            Show this message and exit.
 
     Commands:
       build  Build an image from a Dockerfile.
