@@ -18,7 +18,7 @@ class EcrConfig(object):
             tags,
             value.get('profile_name', None),
             value.get('region_name', None),
-            value.get('registry_id', None),)
+            int(value.get('registry_id', None)),)
 
     def _key(self):
         return (self.tags,

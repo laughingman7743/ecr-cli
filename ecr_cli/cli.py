@@ -17,7 +17,7 @@ from ecr_cli.util import load_ecr_config
               help=msg.HELP_OPTION_PROFILE)
 @click.option('--region', type=str, required=False,
               help=msg.HELP_OPTION_REGION)
-@click.option('--registry-id', type=str, required=False,
+@click.option('--registry-id', type=int, required=False,
               help=msg.HELP_OPTION_REGISTRY_ID)
 @click.option('--debug/--no-debug', required=False, default=False,
               help=msg.HELP_OPTION_DEBUG)
