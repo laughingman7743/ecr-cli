@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 #  -*- coding: utf-8 -*-
 from __future__ import print_function
+
 import codecs
 
-from setuptools import setup
+from setuptools import find_packages, setup
 
 import ecr_cli
-
 
 with codecs.open('README.rst', 'rb', 'utf-8') as readme:
     long_description = readme.read()
@@ -21,7 +21,7 @@ setup(
     author='laughingman7743',
     author_email='laughingman7743@gmail.com',
     license='MIT License',
-    packages=['ecr_cli'],
+    packages=find_packages(),
     package_data={
         '': ['*.rst'],
     },
